@@ -1,0 +1,31 @@
+before:
+  hooks:
+    - go mod download
+builds:
+  - binary: "{{ .ProjectName }}"
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - arm64 # Raspberry Pi 3 & 4
+      - amd64
+      # - arm # Raspberry Pi 1 & 2
+    # GOARM to build for when GOARCH is arm.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    #
+    # Default: [ 6 ]
+    # goarm:
+      # - "6" # Raspberry Pi 1
+      # - "7" # Raspberry Pi 2
+
+# archives:
+#   - format: tar.gz
+#     # this name template makes the OS and Arch compatible with the results of uname.
+#     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Runtime.Goos }}_{{ .Runtime.Goarch }}"
+
+snapshot:
+  name_template: "{{ .ProjectName }}_dev-{{.ShortCommit}}_{{ .Runtime.Goos }}_{{ .Runtime.Goarch }}"
+
+checksum:
+  name_template: 'checksums.txt'

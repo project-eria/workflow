@@ -1,0 +1,26 @@
+name: GoReleaser
+
+on:
+  push:
+    # branches: [ "dev" ]
+    tags:
+      - "v*"
+
+env:
+  APP: ${{ github.event.repository.name }}
+  IMAGE_NAME: eria/${{ github.event.repository.name }}
+  REGISTRY: rg.fr-par.scw.cloud
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: GoReleaser
+      uses: goreleaser/goreleaser-action@v4
+      with:
+        version: latest
+        args: release -f .github/goreleaser.yaml --clean
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
