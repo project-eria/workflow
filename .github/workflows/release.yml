@@ -1,10 +1,8 @@
+# https://docs.github.com/en/actions/using-workflows/reusing-workflows
 name: GoReleaser
 
 on:
-  push:
-    # branches: [ "dev" ]
-    tags:
-      - "v*"
+  workflow_call:
 
 env:
   APP: ${{ github.event.repository.name }}
