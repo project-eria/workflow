@@ -19,6 +19,11 @@ builds:
       # - "6" # Raspberry Pi 1
       # - "7" # Raspberry Pi 2
 
+    # Custom ldflags.
+    # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
+    ldflags:
+      - -X github.com/project-eria/eria-core.AppVersion={{.Version}} -X github.com/project-eria/eria-core.BuildDate={{.Date}}
+
 archives:
   - format: tgz
     name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
