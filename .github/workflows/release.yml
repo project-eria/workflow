@@ -15,13 +15,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.21'
+
     - name: Get GoReleaser config
       uses: wei/curl@v1
       with:
         args: -o .goreleaser.yaml https://raw.githubusercontent.com/project-eria/workflows/main/.github/goreleaser.yaml
 
     - name: GoReleaser
-      uses: goreleaser/goreleaser-action@v4
+      uses: goreleaser/goreleaser-action@v5
       with:
         version: latest
         args: release --clean
