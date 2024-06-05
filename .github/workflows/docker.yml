@@ -1,14 +1,6 @@
 # https://docs.github.com/en/actions/using-workflows/reusing-workflows
 name: Docker
 
-on:
-  workflow_call:
-    secrets:
-      REGISTRY_USER:
-        required: true
-      REGISTRY_TOKEN:
-        required: true
-
 env:
   APP: ${{ github.event.repository.name }}
   IMAGE_NAME: eria/${{ github.event.repository.name }}
