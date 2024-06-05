@@ -1,6 +1,9 @@
 # https://docs.github.com/en/actions/using-workflows/reusing-workflows
 name: GoReleaser
 
+on:
+  workflow_call:
+
 env:
   APP: ${{ github.event.repository.name }}
   IMAGE_NAME: eria/${{ github.event.repository.name }}
