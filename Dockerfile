@@ -21,6 +21,11 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags "-X github.com/proje
 
 FROM scratch as final
 ARG APP
+ARG config_path
+ENV ERIA_CONFIG_PATH $config_path
+ARG log
+ENV ERIA_LOG $log
+
 LABEL org.opencontainers.image.source="https://github.com/project-eria/$APP"
 WORKDIR /app/
 COPY --from=build /out/app .
