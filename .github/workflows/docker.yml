@@ -67,6 +67,14 @@ jobs:
       with:
         args: -o Dockerfile https://raw.githubusercontent.com/project-eria/workflows/main/Dockerfile
 
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY_IMAGE }}
+        tags: |
+          type=semver,pattern={{version}}
+
     - name: Docker Setup Buildx
       uses: docker/setup-buildx-action@v2
 
