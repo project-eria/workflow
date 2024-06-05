@@ -6,7 +6,7 @@ on:
 
 env:
   APP: ${{ github.event.repository.name }}
-  IMAGE_NAME: eria/${{ github.event.repository.name }}
+  IMAGE_NAME: project-eria/${{ github.event.repository.name }}
   REGISTRY: rg.fr-par.scw.cloud
 
 jobs:
