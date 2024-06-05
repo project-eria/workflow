@@ -20,6 +20,8 @@ RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags "-X github.com/proje
 #RUN zip -q -r -0 /zoneinfo.zip .
 
 FROM scratch as final
+ARG APP
+LABEL org.opencontainers.image.source="https://github.com/project-eria/$APP"
 WORKDIR /app/
 COPY --from=build /out/app .
 # the timezone data:

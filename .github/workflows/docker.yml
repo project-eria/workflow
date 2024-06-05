@@ -86,6 +86,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build && Push
+      id: push
       uses: docker/build-push-action@v4
       with:
         context: .
@@ -96,6 +97,7 @@ jobs:
           ${{ env.TAG1 }}
           ${{ env.TAG2 }}
         build-args: |
+          APP=${{ env.APP }}
           VERSION=${{ env.GIT_TAG }}
           BUILDDATE=${{ env.BUILD_DATE }}
 
